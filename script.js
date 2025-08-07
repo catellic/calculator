@@ -66,6 +66,12 @@ document.addEventListener('DOMContentLoaded', () => {
         button.addEventListener('click', (event) => {
             pointButton.disabled = false;
             if (firstOperand !== '' && !isOperatorSelected) {
+                if (event.target.textContent === '<') {
+                    displaySelector.value = displaySelector.value.slice(0, -1);
+                    firstOperand = firstOperand.slice(0, -1);
+                    // secondOperand = secondOperand.slice(0, -1);
+                    return
+                }
                 operator = event.target.textContent;
                 isOperatorSelected = true;
                 displaySelector.value = `${firstOperand} ${operator}`;
@@ -76,6 +82,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.log(`Operator: ${operator}`);
 
             } else if (secondOperand !== '' && isOperatorSelected) {
+                if (event.target.textContent === '<') {
+                    displaySelector.value = displaySelector.value.slice(0, -1);
+                    // firstOperand = firstOperand.slice(0, -1);
+                    secondOperand = secondOperand.slice(0, -1);
+                    return
+                }
                 result = Calculator.operate(operator, firstOperand, secondOperand);
                 displaySelector.value = result;
                 firstOperand = '';
