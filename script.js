@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const numberButtons = document.querySelectorAll('.buttons button');
     const operatorButtons = document.querySelectorAll('.operators button');
     const clearButton = document.querySelector('#btn-clear');
+    const pointButton = document.querySelector('#btn-float');
 
     let firstOperand = '';
     let operator = '';
@@ -26,8 +27,12 @@ document.addEventListener('DOMContentLoaded', () => {
     numberButtons.forEach(button => {
         button.addEventListener('click', (event) => {
             if (!isOperatorSelected) {
-                if (firstOperand.includes('.') && event.target.textContent === '.') {
-                    return
+                if (event.target.textContent === '.' && !firstOperand.includes('.')) {
+                    pointButton.disabled = true;
+                    firstOperand += event.target.textContent;
+                    displaySelector.value = firstOperand;
+                } else if (firstOperand.includes('.') && event.target.textContent === '.') {
+                    // pointButton.disabled = true;
                 } else {
                     firstOperand += event.target.textContent;
                     displaySelector.value = firstOperand;
@@ -37,13 +42,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.log(`Operator: ${operator}`);
 
             } else {
-                if (secondOperand.includes('.') && event.target.textContent === '.') {
-                    return
+                if (event.target.textContent === '.' && !secondOperand.includes('.')) {
+                    pointButton.disabled = true;
+                    secondOperand += event.target.textContent;
+                    displaySelector.value = `${firstOperand} ${operator} ${secondOperand}`;
+                } else if (secondOperand.includes('.') && event.target.textContent === '.') {
+                    // pointButton.disabled = true;
                 } else {
                     secondOperand += event.target.textContent;
                     displaySelector.value = `${firstOperand} ${operator} ${secondOperand}`;
                 }
-                
+
 
                 console.log(`First Operand: ${firstOperand}`);
                 console.log(`Second Operand: ${secondOperand}`);
@@ -55,6 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     operatorButtons.forEach(button => {
         button.addEventListener('click', (event) => {
+            pointButton.disabled = false;
             if (firstOperand !== '' && !isOperatorSelected) {
                 operator = event.target.textContent;
                 isOperatorSelected = true;

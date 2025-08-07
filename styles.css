@@ -75,6 +75,13 @@ body {
     margin: 0;
 }
 
+.btn:disabled,
+ .btn:disabled:hover {
+    background: #d3d3d3;
+    color: #a9a9a9;
+    cursor: not-allowed;
+}
+
 .buttons button {
     flex: 1 0 28%;
     min-width: 70px;
