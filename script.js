@@ -26,15 +26,24 @@ document.addEventListener('DOMContentLoaded', () => {
     numberButtons.forEach(button => {
         button.addEventListener('click', (event) => {
             if (!isOperatorSelected) {
-                firstOperand += event.target.textContent;
-                displaySelector.value = firstOperand;
+                if (firstOperand.includes('.') && event.target.textContent === '.') {
+                    return
+                } else {
+                    firstOperand += event.target.textContent;
+                    displaySelector.value = firstOperand;
+                }
 
                 console.log(`First Operand: ${firstOperand}`);
                 console.log(`Operator: ${operator}`);
 
             } else {
-                secondOperand += event.target.textContent;
-                displaySelector.value = `${firstOperand} ${operator} ${secondOperand}`;
+                if (secondOperand.includes('.') && event.target.textContent === '.') {
+                    return
+                } else {
+                    secondOperand += event.target.textContent;
+                    displaySelector.value = `${firstOperand} ${operator} ${secondOperand}`;
+                }
+                
 
                 console.log(`First Operand: ${firstOperand}`);
                 console.log(`Second Operand: ${secondOperand}`);
