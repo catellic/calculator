@@ -19,17 +19,21 @@ class Calculator {
     }
 
     static operate(operator, a, b) {
-        switch (operator) {
-            case '+':
-                return Calculator.add(a, b);
-            case '-':
-                return Calculator.subtract(a, b);
-            case '*':
-                return Calculator.multiply(a, b);
-            case '/':
-                return Calculator.divide(a, b);
-            default:
-                return "Invalid operator";
+        if (!isNaN(a) && !isNaN(b)) {
+            a = parseFloat(a);
+            b = parseFloat(b);
+            switch (operator) {
+                case '+':
+                    return Calculator.add(a, b);
+                case '-':
+                    return Calculator.subtract(a, b);
+                case 'x':
+                    return Calculator.multiply(a, b);
+                case ':':
+                    return Calculator.divide(a, b);
+                default:
+                    return "Invalid operator";
+            }
         }
     }
 }
