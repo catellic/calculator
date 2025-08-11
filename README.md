@@ -2,9 +2,6 @@
 
 Calculator è una web app che simula una calcolatrice base, realizzata con HTML, CSS moderno e JavaScript modulare.
 
-<a href="https://catellic.github.io/calculator/" target="_blank" rel="noopener">Gioca ora su Calculator</a> <!-- Si apre automaticamente in una nuova scheda -->
-
-
 ## Funzionalità
 
 - Interfaccia responsive e moderna
